@@ -176,8 +176,8 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                         </CardHeader>
                         <CardContent className="h-80 pt-4">
                             <ProGate isPro={isPro} locale={locale}>
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={analytics.mistakes_pnl}>
+                                <ResponsiveContainer width="100%" height="100%" className="outline-none focus:outline-none">
+                                    <BarChart data={analytics.mistakes_pnl} className="outline-none focus:outline-none">
                                         <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" vertical={false} />
                                         <XAxis 
                                             dataKey="name" 
@@ -219,8 +219,8 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                         </CardHeader>
                         <CardContent className="h-80 flex items-center justify-center">
                             <ProGate isPro={isPro} locale={locale}>
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <PieChart>
+                                <ResponsiveContainer width="100%" height="100%" className="outline-none focus:outline-none">
+                                    <PieChart className="outline-none focus:outline-none">
                                         <Pie
                                             data={analytics.emotion_win_rate}
                                             innerRadius={50}

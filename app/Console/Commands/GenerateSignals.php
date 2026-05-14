@@ -30,7 +30,7 @@ class GenerateSignals extends Command
                 'tp_2' => $data['tp_2'] ?? null,
                 'stop_loss' => $data['stop_loss'],
                 'reasoning' => $data['reasoning'],
-                'status' => 'active',
+                'status' => 'pending',
             ]);
             
             $this->info("Successfully generated a {$data['direction']} signal for {$data['pair']}.");

@@ -132,10 +132,12 @@ export default function Signals({ auth, signals, history, free_limit, pro_limit 
                                             </td>
                                             <td className="px-4 py-3 font-bold">{sig.pair}</td>
                                             <td className="px-4 py-3">
+                                                {sig.status === 'pending' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500">PENDING</span>}
                                                 {sig.status === 'won' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON</span>}
                                                 {sig.status === 'won_tp1' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP1)</span>}
                                                 {sig.status === 'won_tp2' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP2)</span>}
                                                 {sig.status === 'lost' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">LOST</span>}
+                                                {sig.status === 'invalid' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-muted-foreground/10 text-muted-foreground">INVALID</span>}
                                             </td>
                                             <td className={`px-4 py-3 text-right font-bold text-xs ${sig.pnl > 0 ? 'text-emerald-500' : (sig.pnl < 0 ? 'text-rose-500' : 'text-muted-foreground')}`}>
                                                 {sig.pnl ? `${sig.pnl > 0 ? '+' : ''}${sig.pnl}` : '-'}

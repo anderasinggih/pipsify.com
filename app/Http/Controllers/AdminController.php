@@ -51,7 +51,7 @@ class AdminController extends Controller
                 'tp_2' => $data['tp_2'],
                 'stop_loss' => $data['stop_loss'],
                 'reasoning' => $data['reasoning'],
-                'status' => 'active',
+                'status' => 'pending',
             ]);
             
             return back()->with('success', 'AI Signal generated successfully.');

@@ -18,7 +18,7 @@ import {
     Check,
     Plus,
     Loader2,
-    Signal,
+    LineChart,
     ShieldCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -113,7 +113,7 @@ export default function Authenticated({
     const navigation = [
         { name: t.dashboard, href: route('dashboard'), icon: LayoutDashboard, active: route().current('dashboard') },
         { name: t.journal, href: route('journal'), icon: BookOpen, active: route().current('journal') },
-        { name: 'Signals', href: route('signals.index'), icon: Signal, active: route().current('signals.index') },
+        { name: 'Signals', href: route('signals.index'), icon: LineChart, active: route().current('signals.index') },
         { name: t.settings, href: route('profile.edit'), icon: Settings, active: route().current('profile.edit') },
     ];
 
@@ -333,6 +333,7 @@ export default function Authenticated({
 
                 {/* Floating Mobile Bottom Nav */}
                 <div className="lg:hidden fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 w-[94%] max-w-[400px] h-12 bg-card/70 backdrop-blur-3xl border border-white/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 flex items-center justify-between px-2 border-t border-t-white/10 overflow-hidden">
+
                     {navigation.map((item) => (
                         <Link
                             key={item.name}

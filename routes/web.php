@@ -60,8 +60,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Admin Auth Routes (Guest)
-Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
+// Admin Auth Routes (Standalone)
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AdminAuthController::class, 'create'])->name('login');
     Route::post('login', [AdminAuthController::class, 'store'])->name('login.store');
+    Route::post('logout', [AdminAuthController::class, 'destroy'])->name('logout');
 });

@@ -54,6 +54,7 @@ class HandleInertiaRequests extends Middleware
                 'trade_accounts' => $tradeAccounts,
                 'active_trade_account' => $activeAccount,
                 'locale' => app()->getLocale(),
+                'is_admin' => $request->session()->get('admin_authenticated') === true,
             ],
             'flash' => [
                 'success' => session('success'),

@@ -9,14 +9,12 @@ import { ShieldCheck } from 'lucide-react';
 
 export default function AdminLogin({ status }: { status?: string }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: false,
+        token: '',
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            reset('token');
         };
     }, []);
 
@@ -35,48 +33,33 @@ export default function AdminLogin({ status }: { status?: string }) {
                     <ShieldCheck className="w-12 h-12 text-emerald-500" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">Admin Portal</h2>
-                <p className="text-sm text-muted-foreground text-center mt-2">Sign in with your administrator credentials.</p>
+                <p className="text-sm text-muted-foreground text-center mt-2">Enter the master secret token to access the control center.</p>
             </div>
 
             {status && <div className="mb-4 font-medium text-sm text-emerald-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="token" value="Secret Token" />
 
                     <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
+                        id="token"
                         type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
+                        name="token"
+                        value={data.token}
+                        className="mt-1 block w-full text-center tracking-widest font-mono"
+                        autoComplete="off"
+                        isFocused={true}
+                        onChange={(e) => setData('token', e.target.value)}
+                        placeholder="••••••••••••"
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
+                    <InputError message={errors.token} className="mt-2 text-center" />
                 </div>
 
-                <div className="flex items-center justify-end mt-6">
-                    <PrimaryButton className="w-full justify-center bg-emerald-500 hover:bg-emerald-600 text-white" disabled={processing}>
-                        Access Control Center
+                <div className="flex items-center justify-end mt-8">
+                    <PrimaryButton className="w-full justify-center bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 py-3 rounded-xl" disabled={processing}>
+                        Unlock Control Center
                     </PrimaryButton>
                 </div>
             </form>

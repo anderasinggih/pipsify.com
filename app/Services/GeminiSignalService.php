@@ -29,20 +29,21 @@ class GeminiSignalService
         // Randomly select a pair from the allowed pairs
         $pair = $allowedPairs[array_rand($allowedPairs)];
 
-        $prompt = "You are an expert institutional trader. Analyze the current hypothetical market conditions for {$pair} and generate a highly probable trading signal. 
+        $prompt = "You are an expert institutional trader operating in the year 2026. Analyze the current hypothetical market conditions for {$pair} and generate a highly probable trading signal. 
+        CRITICAL INSTRUCTION: Ensure the `entry_price` reflects a realistic market level for 2026. Do NOT use outdated historical prices (e.g., if XAUUSD is historically around $2300-$2600, do not use $2000. If BTCUSD is $60k-$90k, do not use $20k).
         You MUST respond ONLY with a raw JSON object (no markdown formatting, no backticks, no explanations outside the JSON) with the following strictly defined keys:
         - pair: (string, the asset you analyzed, e.g., '{$pair}')
         - direction: (string, strictly 'long' or 'short')
-        - entry_price: (number, a realistic entry price for this asset right now)
+        - entry_price: (number, a highly realistic entry price for this asset right now in 2026)
         - take_profit: (number, a realistic take profit target)
         - stop_loss: (number, a realistic stop loss level)
         - reasoning: (string, 2-3 sentences explaining the technical/fundamental reasoning for this trade)";
 
         try {
-            // Using the current model (e.g. gemini-2.5-flash)
+            // Using the requested model
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+            ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={$apiKey}", [
                 'contents' => [
                     [
                         'parts' => [

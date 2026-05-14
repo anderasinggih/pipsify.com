@@ -7,6 +7,7 @@ use App\Http\Controllers\StrategyController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TradeAccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\SignalController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -58,3 +59,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Admin Auth Routes (Guest)
+Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AdminAuthController::class, 'create'])->name('login');
+    Route::post('login', [AdminAuthController::class, 'store'])->name('login.store');
+});

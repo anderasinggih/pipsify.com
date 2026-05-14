@@ -272,7 +272,7 @@ export default function Authenticated({
                 </header>
 
                 {/* Mobile Header */}
-                <header className="lg:hidden flex h-10 items-center justify-between px-4 border-b border-border/20 bg-background/80 backdrop-blur-md sticky top-0 z-10">
+                <header className="lg:hidden flex h-10 items-center justify-between px-4 border-b border-border/20 bg-background/80 backdrop-blur-md sticky top-0 z-10 pt-[env(safe-area-inset-top)] box-content">
                     <div className="flex items-center gap-2">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -313,7 +313,7 @@ export default function Authenticated({
                     </div>
                 </header>
 
-                <main className="flex-1 overflow-y-auto bg-background p-4 lg:p-8 pb-32 lg:pb-8">
+                <main className="flex-1 overflow-y-auto bg-background p-3 lg:p-8 pb-32 lg:pb-8 no-scrollbar">
                     <div className="max-w-7xl mx-auto">
                         <div className="lg:hidden mb-6">{header}</div>
                         {children}
@@ -321,7 +321,7 @@ export default function Authenticated({
                 </main>
 
                 {/* Floating Mobile Bottom Nav */}
-                <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[94%] max-w-[400px] h-12 bg-card/70 backdrop-blur-3xl border border-white/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 flex items-center justify-between px-2 border-t border-t-white/10 overflow-hidden">
+                <div className="lg:hidden fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 w-[94%] max-w-[400px] h-12 bg-card/70 backdrop-blur-3xl border border-white/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50 flex items-center justify-between px-2 border-t border-t-white/10 overflow-hidden">
                     {navigation.map((item) => (
                         <Link
                             key={item.name}

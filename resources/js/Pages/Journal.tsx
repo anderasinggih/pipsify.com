@@ -159,13 +159,13 @@ export default function Journal({ trades, strategies }: any) {
                                 ) : (
                                     filteredTrades.map((trade: any) => (
                                         <TableRow key={trade.id} className="hover:bg-secondary/30 border-border group transition-colors">
-                                            <TableCell className="text-foreground text-xs font-medium">
+                                            <TableCell className="text-foreground text-[10px] font-medium py-2">
                                                 {new Date(trade.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                                             </TableCell>
-                                            <TableCell>
+                                            <TableCell className="py-2">
                                                 <div className="flex flex-col">
-                                                    <span className="font-bold text-foreground text-sm">{trade.ticker}</span>
-                                                    <span className="text-[9px] text-muted-foreground uppercase truncate max-w-[80px]">{trade.strategy?.name || 'Manual'}</span>
+                                                    <span className="font-bold text-foreground text-xs">{trade.ticker}</span>
+                                                    <span className="text-[8px] text-muted-foreground uppercase truncate max-w-[60px] leading-tight">{trade.strategy?.name || 'Manual'}</span>
                                                 </div>
                                             </TableCell>
                                             <TableCell className="hidden sm:table-cell">
@@ -180,7 +180,7 @@ export default function Journal({ trades, strategies }: any) {
                                                 <StatusBadge status={trade.status} className="scale-75 origin-left" />
                                             </TableCell>
                                             <TableCell className={cn(
-                                                "text-right font-bold text-sm",
+                                                "text-right font-bold text-xs py-2",
                                                 parseFloat(trade.net_pnl) >= 0 ? "text-emerald-400" : "text-rose-400"
                                             )}>
                                                 {formatCurrency(trade.net_pnl, currency)}

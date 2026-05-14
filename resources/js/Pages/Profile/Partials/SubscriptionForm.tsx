@@ -57,13 +57,13 @@ export default function SubscriptionForm({ className = '' }: { className?: strin
 
     return (
         <section className={className}>
-            <header className="flex items-center gap-4 mb-8">
-                <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Sparkles className="h-6 w-6 text-primary" />
+            <header className="flex items-center gap-3 mb-6">
+                <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Sparkles className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                    <h2 className="text-lg font-bold text-foreground">{t.title}</h2>
-                    <p className="text-sm text-muted-foreground">{t.desc}</p>
+                    <h2 className="text-base font-bold text-foreground">{t.title}</h2>
+                    <p className="text-xs text-muted-foreground">{t.desc}</p>
                 </div>
             </header>
 
@@ -74,19 +74,19 @@ export default function SubscriptionForm({ className = '' }: { className?: strin
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <div className="space-y-1">
-                            <CardTitle className="text-2xl flex items-center gap-2 text-foreground font-bold tracking-tight">
+                            <CardTitle className="text-xl flex items-center gap-2 text-foreground font-bold tracking-tight">
                                 {user.is_pro ? t.pro : t.free}
-                                {user.is_pro && <Badge className="bg-primary text-primary-foreground font-bold rounded-full">PRO</Badge>}
+                                {user.is_pro && <Badge className="bg-primary text-primary-foreground font-bold rounded-full scale-90">PRO</Badge>}
                             </CardTitle>
-                            <CardDescription className="text-muted-foreground text-sm">
+                            <CardDescription className="text-muted-foreground text-xs">
                                 {user.is_pro ? t.pro_desc : t.free_desc}
                             </CardDescription>
                         </div>
                         <div className={cn(
-                            "h-14 w-14 rounded-2xl flex items-center justify-center border shadow-inner transition-colors",
+                            "h-12 w-12 rounded-xl flex items-center justify-center border shadow-inner transition-colors shrink-0",
                             user.is_pro ? "bg-primary/20 border-primary/30" : "bg-secondary border-border"
                         )}>
-                            {user.is_pro ? <ShieldCheck className="h-8 w-8 text-primary" /> : <Zap className="h-8 w-8 text-muted-foreground/30" />}
+                            {user.is_pro ? <ShieldCheck className="h-6 w-6 text-primary" /> : <Zap className="h-6 w-6 text-muted-foreground/30" />}
                         </div>
                     </div>
                 </CardHeader>
@@ -104,9 +104,9 @@ export default function SubscriptionForm({ className = '' }: { className?: strin
                             <Button 
                                 onClick={upgrade} 
                                 disabled={processing}
-                                className="w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground font-extrabold text-base rounded-full shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
+                                className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm rounded-full shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
                             >
-                                {processing && <Loader2 className="mr-2 h-5 w-5 animate-spin" />}
+                                {processing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 {t.btn}
                             </Button>
                         </div>

@@ -98,8 +98,8 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
             header={
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">{t.title}</h2>
-                        <p className="text-xs md:text-sm text-muted-foreground">{t.welcome} <span className="text-primary font-bold">{activeAccount?.name}</span></p>
+                        <h2 className="text-lg md:text-2xl font-bold tracking-tight text-foreground">{t.title}</h2>
+                        <p className="text-[10px] md:text-sm text-muted-foreground">{t.welcome} <span className="text-primary font-bold">{activeAccount?.name}</span></p>
                     </div>
                     <Button asChild className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 w-full sm:w-auto">
                         <Link href={route('journal')}>
@@ -118,12 +118,12 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                         <div className="absolute top-0 right-0 p-3 opacity-10">
                             <History className="h-10 w-10 text-foreground" />
                         </div>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="text-[10px] font-bold text-muted-foreground">{t.total_trades}</CardTitle>
+                        <CardHeader className="pb-1 p-3">
+                            <CardTitle className="text-[9px] font-bold text-muted-foreground uppercase">{t.total_trades}</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl md:text-3xl font-bold text-foreground">{stats.total_trades}</div>
-                            <p className="text-[10px] text-muted-foreground mt-1">{t.lifetime}</p>
+                        <CardContent className="p-3 pt-0">
+                            <div className="text-xl md:text-3xl font-bold text-foreground">{stats.total_trades}</div>
+                            <p className="text-[9px] text-muted-foreground mt-0.5">{t.lifetime}</p>
                         </CardContent>
                     </Card>
 
@@ -131,12 +131,12 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                         <div className="absolute top-0 right-0 p-3 opacity-10">
                             <Target className="h-10 w-10 text-emerald-500" />
                         </div>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="text-[10px] font-bold text-muted-foreground">{t.win_rate}</CardTitle>
+                        <CardHeader className="pb-1 p-3">
+                            <CardTitle className="text-[9px] font-bold text-muted-foreground uppercase">{t.win_rate}</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl md:text-3xl font-bold text-foreground">{stats.win_rate}%</div>
-                            <div className="mt-3 h-1.5 w-full bg-secondary rounded-full overflow-hidden">
+                        <CardContent className="p-3 pt-0">
+                            <div className="text-xl md:text-3xl font-bold text-foreground">{stats.win_rate}%</div>
+                            <div className="mt-2 h-1 w-full bg-secondary rounded-full overflow-hidden">
                                 <div 
                                     className="h-full bg-emerald-500 transition-all duration-500" 
                                     style={{ width: `${stats.win_rate}%` }}
@@ -149,17 +149,17 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                         <div className="absolute top-0 right-0 p-3 opacity-10">
                             {isProfit ? <TrendingUp className="h-10 w-10 text-emerald-500" /> : <TrendingDown className="h-10 w-10 text-rose-500" />}
                         </div>
-                        <CardHeader className="pb-2">
-                            <CardTitle className="text-[10px] font-bold text-muted-foreground">{t.net_pnl}</CardTitle>
+                        <CardHeader className="pb-1 p-3">
+                            <CardTitle className="text-[9px] font-bold text-muted-foreground uppercase">{t.net_pnl}</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="p-3 pt-0">
                             <div className={cn(
-                                "text-2xl md:text-3xl font-bold",
+                                "text-xl md:text-3xl font-bold",
                                 isProfit ? "text-emerald-400" : "text-rose-400"
                             )}>
                                 {formatCurrency(stats.total_pnl, currency)}
                             </div>
-                            <p className="text-[10px] text-muted-foreground mt-1">{t.realized}</p>
+                            <p className="text-[9px] text-muted-foreground mt-0.5">{t.realized}</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -223,18 +223,28 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                                     <PieChart>
                                         <Pie
                                             data={analytics.emotion_win_rate}
-                                            innerRadius={60}
-                                            outerRadius={90}
-                                            paddingAngle={5}
+                                            innerRadius={50}
+                                            outerRadius={80}
+                                            paddingAngle={4}
                                             dataKey="value"
+                                            stroke="none"
+                                            activeShape={false}
+                                            isAnimationActive={false}
                                         >
                                             {analytics.emotion_win_rate?.map((entry: any, index: number) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="none" />
                                             ))}
                                         </Pie>
                                         <Tooltip 
                                             contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '8px', fontSize: '10px' }}
                                             formatter={(value: any) => `${value}%`}
+                                        />
+                                        <Legend 
+                                            verticalAlign="bottom" 
+                                            align="center" 
+                                            iconType="circle" 
+                                            iconSize={8}
+                                            wrapperStyle={{ fontSize: '9px', paddingTop: '20px' }}
                                         />
                                     </PieChart>
                                 </ResponsiveContainer>
@@ -263,26 +273,26 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                                 </div>
                             ) : (
                                 recent_trades.map((trade: any) => (
-                                    <div key={trade.id} className="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-border bg-background hover:bg-secondary/30 transition-colors group">
-                                        <div className="flex items-center gap-3 sm:gap-4">
+                                    <div key={trade.id} className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-border bg-background hover:bg-secondary/30 transition-colors group">
+                                        <div className="flex items-center gap-2 sm:gap-3">
                                             <div className={cn(
-                                                "h-10 w-10 sm:h-12 sm:w-12 rounded-full flex items-center justify-center shadow-inner border border-border/50 shrink-0 transition-all group-hover:scale-110",
+                                                "h-8 w-8 sm:h-10 sm:w-10 rounded-full flex items-center justify-center shadow-inner border border-border/50 shrink-0 transition-all group-hover:scale-110",
                                                 trade.status === 'win' ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : 
                                                 trade.status === 'loss' ? "bg-rose-500/10 text-rose-400 border-rose-500/20" : 
                                                 "bg-secondary text-muted-foreground border-border"
                                             )}>
                                                 {trade.status === 'win' ? (
-                                                    <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />
+                                                    <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
                                                 ) : trade.status === 'loss' ? (
-                                                    <TrendingDown className="h-5 w-5 sm:h-6 sm:w-6" />
+                                                    <TrendingDown className="h-4 w-4 sm:h-5 sm:w-5" />
                                                 ) : (
-                                                    <History className="h-5 w-5 sm:h-6 sm:w-6" />
+                                                    <History className="h-4 w-4 sm:h-5 sm:w-5" />
                                                 )}
                                             </div>
                                             <div className="min-w-0">
                                                 <div className="flex items-center gap-2">
-                                                    <span className="font-bold text-foreground text-sm sm:text-base truncate">{trade.ticker}</span>
-                                                    <StatusBadge status={trade.status} className="scale-75 origin-left" />
+                                                    <span className="font-bold text-foreground text-xs sm:text-sm truncate">{trade.ticker}</span>
+                                                    <StatusBadge status={trade.status} className="scale-[0.6] origin-left" />
                                                 </div>
                                                 <div className="text-[10px] text-muted-foreground font-medium mt-0.5">
                                                     {new Date(trade.created_at).toLocaleDateString()}
@@ -291,7 +301,7 @@ export default function Dashboard({ stats, recent_trades, analytics }: any) {
                                         </div>
                                         <div className="text-right shrink-0">
                                             <div className={cn(
-                                                "font-bold text-sm sm:text-base",
+                                                "font-bold text-xs sm:text-sm",
                                                 parseFloat(trade.net_pnl) >= 0 ? "text-emerald-400" : "text-rose-400"
                                             )}>
                                                 {parseFloat(trade.net_pnl) >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl, currency)}

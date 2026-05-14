@@ -38,7 +38,7 @@ class TradeController extends Controller
         }
 
         $validated = $request->validate([
-            'ticker' => 'required|string|max:10',
+            'ticker' => 'required|string|max:12',
             'direction' => 'required|in:long,short',
             'status' => 'required|in:win,loss,breakeven,open',
             'entry_price' => 'required|numeric',
@@ -48,7 +48,7 @@ class TradeController extends Controller
             'pre_trade_emotion' => 'required|string',
             'post_trade_emotion' => 'nullable|string',
             'mistakes_made' => 'nullable|array',
-            'notes' => 'nullable|string',
+            'notes' => 'nullable|string|max:2000',
         ]);
 
         $trade = new Trade($validated);
@@ -74,7 +74,7 @@ class TradeController extends Controller
             'exit_price' => 'nullable|numeric',
             'post_trade_emotion' => 'nullable|string',
             'mistakes_made' => 'nullable|array',
-            'notes' => 'nullable|string',
+            'notes' => 'nullable|string|max:2000',
         ]);
 
         $trade->update($validated);

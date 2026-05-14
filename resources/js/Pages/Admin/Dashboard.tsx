@@ -1,3 +1,4 @@
+import React, { Fragment } from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, router, usePage } from '@inertiajs/react';
 import { Button } from '@/Components/ui/button';
@@ -11,6 +12,7 @@ export default function AdminDashboard({ settings, signals }: any) {
     const { data, setData, post, processing } = useForm({
         gemini_api_key: settings?.gemini_api_key || '',
         allowed_pairs: settings?.allowed_pairs || '["XAUUSD", "BTCUSD", "EURUSD", "GBPUSD"]',
+        language: settings?.language || 'en',
         free_limit: settings?.free_limit || 3,
         pro_limit: settings?.pro_limit || 10,
     });
@@ -87,14 +89,17 @@ export default function AdminDashboard({ settings, signals }: any) {
                                         className="h-10 bg-background border-border rounded-xl focus:ring-primary text-sm"
                                     />
                                 </div>
+                                </div>
                                 <div className="space-y-2">
-                                    <Label className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Pro Tier Daily Limit</Label>
-                                    <Input 
-                                        type="number"
-                                        value={data.pro_limit}
-                                        onChange={e => setData('pro_limit', parseInt(e.target.value))}
-                                        className="h-10 bg-background border-border rounded-xl focus:ring-primary text-sm"
-                                    />
+                                    <Label className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Reasoning Language</Label>
+                                    <select 
+                                        value={data.language}
+                                        onChange={e => setData('language', e.target.value)}
+                                        className="w-full h-10 bg-background border border-border rounded-xl focus:ring-primary text-sm px-3 appearance-none"
+                                    >
+                                        <option value="en">English (US)</option>
+                                        <option value="id">Indonesian (Bahasa)</option>
+                                    </select>
                                 </div>
                             </div>
                             <Button type="submit" disabled={processing} className="w-full sm:w-auto h-10 rounded-xl font-bold mt-4 shadow-primary/20 shadow-lg">
@@ -139,7 +144,8 @@ export default function AdminDashboard({ settings, signals }: any) {
                                 </thead>
                                 <tbody>
                                     {signals.data.map((sig: any) => (
-                                        <tr key={sig.id} className="border-b border-border/50 hover:bg-secondary/20 transition-colors">
+                                        <Fragment key={sig.id}>
+                                        <tr className="border-b border-border/20 hover:bg-secondary/20 transition-colors">
                                             <td className="px-4 py-3 text-xs text-muted-foreground whitespace-nowrap">
                                                 {new Date(sig.created_at).toLocaleString()}
                                             </td>
@@ -181,6 +187,15 @@ export default function AdminDashboard({ settings, signals }: any) {
                                                 )}
                                             </td>
                                         </tr>
+                                        <tr className="border-b border-border/50 bg-secondary/5">
+                                            <td colSpan={8} className="px-4 py-2">
+                                                <p className="text-[10px] text-muted-foreground font-medium flex gap-2 items-start">
+                                                    <span className="font-bold text-emerald-500 shrink-0">AI Rationale:</span> 
+                                                    <span>{sig.reasoning}</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        </Fragment>
                                     ))}
                                     {signals.data.length === 0 && (
                                         <tr>

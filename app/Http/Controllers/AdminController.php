@@ -27,6 +27,7 @@ class AdminController extends Controller
         $validated = $request->validate([
             'gemini_api_key' => 'nullable|string',
             'allowed_pairs' => 'required|string', // Expecting JSON string array
+            'language' => 'required|string|in:en,id',
             'free_limit' => 'required|integer|min:0',
             'pro_limit' => 'required|integer|min:1',
         ]);

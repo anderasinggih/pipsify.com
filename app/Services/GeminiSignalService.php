@@ -35,7 +35,8 @@ class GeminiSignalService
         - pair: (string, the asset you analyzed, e.g., '{$pair}')
         - direction: (string, strictly 'long' or 'short')
         - entry_price: (number, a highly realistic entry price for this asset right now in 2026)
-        - take_profit: (number, a realistic take profit target)
+        - tp_1: (number, a realistic, safer first take profit target)
+        - tp_2: (number, a realistic, more aggressive second take profit target)
         - stop_loss: (number, a realistic stop loss level)
         - reasoning: (string, 2-3 sentences explaining the technical/fundamental reasoning for this trade)";
 

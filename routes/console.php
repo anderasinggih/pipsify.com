@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('signals:generate')->everyTwoHours();
+Schedule::command('signals:check')->everyFiveMinutes();

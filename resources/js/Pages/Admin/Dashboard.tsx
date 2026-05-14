@@ -131,7 +131,8 @@ export default function AdminDashboard({ settings, signals }: any) {
                                         <th className="px-4 py-3 font-medium">Pair</th>
                                         <th className="px-4 py-3 font-medium">Direction</th>
                                         <th className="px-4 py-3 font-medium">Entry</th>
-                                        <th className="px-4 py-3 font-medium">SL / TP</th>
+                                        <th className="px-4 py-3 font-medium">Stop Loss</th>
+                                        <th className="px-4 py-3 font-medium">Take Profit (1 & 2)</th>
                                         <th className="px-4 py-3 font-medium">Status</th>
                                         <th className="px-4 py-3 font-medium text-right">Actions</th>
                                     </tr>
@@ -149,12 +150,16 @@ export default function AdminDashboard({ settings, signals }: any) {
                                                 </span>
                                             </td>
                                             <td className="px-4 py-3 font-mono text-xs">{sig.entry_price}</td>
-                                            <td className="px-4 py-3 font-mono text-[10px] text-muted-foreground">
-                                                <span className="text-rose-500">{sig.stop_loss}</span> / <span className="text-emerald-500">{sig.take_profit}</span>
+                                            <td className="px-4 py-3 font-mono text-xs text-rose-500">{sig.stop_loss}</td>
+                                            <td className="px-4 py-3 font-mono text-[10px] text-emerald-500">
+                                                <span className="block font-bold">TP1: {sig.tp_1}</span>
+                                                {sig.tp_2 && <span className="block text-emerald-500/70">TP2: {sig.tp_2}</span>}
                                             </td>
                                             <td className="px-4 py-3">
                                                 {sig.status === 'active' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500">ACTIVE</span>}
                                                 {sig.status === 'won' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON</span>}
+                                                {sig.status === 'won_tp1' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP1)</span>}
+                                                {sig.status === 'won_tp2' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP2)</span>}
                                                 {sig.status === 'lost' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">LOST</span>}
                                             </td>
                                             <td className="px-4 py-3 text-right">

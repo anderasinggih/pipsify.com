@@ -56,9 +56,15 @@ export default function Signals({ auth, signals, history, free_limit, pro_limit 
                                         <span className="font-mono font-bold text-sm">{sig.entry_price}</span>
                                     </div>
                                     <div className="flex justify-between items-center border-b border-border/50 pb-2">
-                                        <span className="text-xs text-muted-foreground font-medium flex items-center gap-1"><Target className="w-3 h-3 text-emerald-500"/> Take Profit</span>
-                                        <span className="font-mono font-bold text-sm text-emerald-500">{sig.take_profit}</span>
+                                        <span className="text-xs text-muted-foreground font-medium flex items-center gap-1"><Target className="w-3 h-3 text-emerald-500"/> Take Profit 1</span>
+                                        <span className="font-mono font-bold text-sm text-emerald-500">{sig.tp_1}</span>
                                     </div>
+                                    {sig.tp_2 && (
+                                        <div className="flex justify-between items-center border-b border-border/50 pb-2">
+                                            <span className="text-xs text-muted-foreground font-medium flex items-center gap-1"><Target className="w-3 h-3 text-emerald-500"/> Take Profit 2</span>
+                                            <span className="font-mono font-bold text-sm text-emerald-500">{sig.tp_2}</span>
+                                        </div>
+                                    )}
                                     <div className="flex justify-between items-center border-b border-border/50 pb-2">
                                         <span className="text-xs text-muted-foreground font-medium flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-rose-500"/> Stop Loss</span>
                                         <span className="font-mono font-bold text-sm text-rose-500">{sig.stop_loss}</span>
@@ -127,6 +133,8 @@ export default function Signals({ auth, signals, history, free_limit, pro_limit 
                                             <td className="px-4 py-3 font-bold">{sig.pair}</td>
                                             <td className="px-4 py-3">
                                                 {sig.status === 'won' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON</span>}
+                                                {sig.status === 'won_tp1' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP1)</span>}
+                                                {sig.status === 'won_tp2' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500">WON (TP2)</span>}
                                                 {sig.status === 'lost' && <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500">LOST</span>}
                                             </td>
                                             <td className={`px-4 py-3 text-right font-bold text-xs ${sig.pnl > 0 ? 'text-emerald-500' : (sig.pnl < 0 ? 'text-rose-500' : 'text-muted-foreground')}`}>

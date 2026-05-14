@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, router, usePage } from '@inertiajs/react';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
@@ -41,7 +41,7 @@ export default function AdminDashboard({ settings, signals }: any) {
     };
 
     return (
-        <AuthenticatedLayout
+        <AdminLayout
             header={<h2 className="text-xl font-bold leading-tight text-foreground">Admin Control Center</h2>}
         >
             <Head title="Admin Dashboard" />
@@ -189,6 +189,6 @@ export default function AdminDashboard({ settings, signals }: any) {
                 </Card>
 
             </div>
-        </AuthenticatedLayout>
+        </AdminLayout>
     );
 }

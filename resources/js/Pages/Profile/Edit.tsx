@@ -15,23 +15,23 @@ export default function Edit({
         <AuthenticatedLayout
             header={
                 <div>
-                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">Settings</h2>
-                    <p className="text-xs md:text-sm text-muted-foreground">Manage your account and preferences</p>
+                    <h2 className="text-base md:text-2xl font-bold tracking-tight text-foreground">Settings</h2>
+                    <p className="text-[10px] md:text-sm text-muted-foreground">Manage your account and preferences</p>
                 </div>
             }
         >
             <Head title="Settings" />
 
-            <div className="py-4 md:py-12 space-y-4 md:space-y-8">
-                <div className="bg-card p-4 md:p-8 rounded-3xl border border-border shadow-md">
+            <div className="py-2 md:py-12 space-y-3 md:space-y-8">
+                <div className="bg-card p-3 md:p-8 rounded-2xl border border-border shadow-md">
                     <SubscriptionForm className="max-w-xl" />
                 </div>
 
-                <div className="bg-card p-4 md:p-8 rounded-3xl border border-border shadow-md">
+                <div className="bg-card p-3 md:p-8 rounded-2xl border border-border shadow-md">
                     <UpdateLanguageForm className="max-w-xl" />
                 </div>
 
-                <div className="bg-card p-4 md:p-8 rounded-3xl border border-border shadow-md">
+                <div className="bg-card p-3 md:p-8 rounded-2xl border border-border shadow-md">
                     <UpdateProfileInformationForm
                         mustVerifyEmail={mustVerifyEmail}
                         status={status}
@@ -39,11 +39,11 @@ export default function Edit({
                     />
                 </div>
 
-                <div className="bg-card p-4 md:p-8 rounded-3xl border border-border shadow-md">
+                <div className="bg-card p-3 md:p-8 rounded-2xl border border-border shadow-md">
                     <UpdatePasswordForm className="max-w-xl" />
                 </div>
 
-                <div className="bg-card p-4 md:p-8 rounded-3xl border border-border shadow-md border-rose-500/20">
+                <div className="bg-card p-3 md:p-8 rounded-2xl border border-border shadow-md border-rose-500/10">
                     <DeleteUserForm className="max-w-xl" />
                 </div>
             </div>

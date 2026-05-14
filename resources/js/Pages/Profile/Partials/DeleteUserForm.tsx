@@ -82,20 +82,20 @@ export default function DeleteUserForm({
 
     return (
         <section className={className}>
-            <header className="flex items-center gap-4 mb-8">
-                <div className="h-12 w-12 rounded-2xl bg-rose-500/10 flex items-center justify-center shrink-0">
-                    <AlertTriangle className="h-6 w-6 text-rose-500" />
+            <header className="flex items-center gap-2.5 mb-4">
+                <div className="h-8 w-8 rounded-lg bg-rose-500/10 flex items-center justify-center shrink-0">
+                    <AlertTriangle className="h-4 w-4 text-rose-500" />
                 </div>
                 <div>
-                    <h2 className="text-lg font-bold text-foreground">{t.title}</h2>
-                    <p className="text-sm text-muted-foreground">{t.desc}</p>
+                    <h2 className="text-sm font-bold text-foreground leading-none">{t.title}</h2>
+                    <p className="text-[10px] text-muted-foreground mt-1">{t.desc}</p>
                 </div>
             </header>
 
             <Button 
                 variant="destructive" 
                 onClick={confirmUserDeletion}
-                className="bg-rose-500/10 text-rose-500 border border-rose-500/20 hover:bg-rose-500 hover:text-white font-bold h-12 px-8 rounded-full transition-all"
+                className="bg-rose-500/10 text-rose-500 border border-rose-500/20 hover:bg-rose-500 hover:text-white font-bold h-9 px-6 rounded-full transition-all text-[10px]"
             >
                 {t.btn}
             </Button>

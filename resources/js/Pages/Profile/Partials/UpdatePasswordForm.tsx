@@ -78,13 +78,13 @@ export default function UpdatePasswordForm({
 
     return (
         <section className={className}>
-            <header className="flex items-center gap-3 mb-6">
-                <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Key className="h-5 w-5 text-primary" />
+            <header className="flex items-center gap-2.5 mb-4">
+                <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Lock className="h-4 w-4 text-primary" />
                 </div>
                 <div>
-                    <h2 className="text-base font-bold text-foreground">{t.title}</h2>
-                    <p className="text-xs text-muted-foreground">{t.desc}</p>
+                    <h2 className="text-sm font-bold text-foreground leading-none">{t.title}</h2>
+                    <p className="text-[10px] text-muted-foreground mt-1">{t.desc}</p>
                 </div>
             </header>
 
@@ -92,14 +92,14 @@ export default function UpdatePasswordForm({
                 <div className="space-y-2">
                     <Label htmlFor="current_password" className="text-[10px] font-bold text-muted-foreground">{t.current}</Label>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                        <Lock className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
                         <Input
                             id="current_password"
                             ref={currentPasswordInput}
                             value={data.current_password}
                             onChange={(e) => setData('current_password', e.target.value)}
                             type="password"
-                            className="pl-9 bg-background border-border rounded-xl h-10 focus:ring-primary text-sm"
+                            className="pl-8 bg-background border-border rounded-lg h-9 focus:ring-primary text-[11px]"
                             autoComplete="current-password"
                         />
                     </div>
@@ -110,14 +110,14 @@ export default function UpdatePasswordForm({
                     <div className="space-y-2">
                         <Label htmlFor="password" className="text-[10px] font-bold text-muted-foreground">{t.new}</Label>
                         <div className="relative">
-                            <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                            <Lock className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
                             <Input
                                 id="password"
                                 ref={passwordInput}
                                 value={data.password}
                                 onChange={(e) => setData('password', e.target.value)}
                                 type="password"
-                                className="pl-9 bg-background border-border rounded-xl h-10 focus:ring-primary text-sm"
+                                className="pl-8 bg-background border-border rounded-lg h-9 focus:ring-primary text-[11px]"
                                 autoComplete="new-password"
                             />
                         </div>
@@ -127,13 +127,13 @@ export default function UpdatePasswordForm({
                     <div className="space-y-2">
                         <Label htmlFor="password_confirmation" className="text-[10px] font-bold text-muted-foreground">{t.confirm}</Label>
                         <div className="relative">
-                            <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                            <Lock className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
                             <Input
                                 id="password_confirmation"
                                 value={data.password_confirmation}
                                 onChange={(e) => setData('password_confirmation', e.target.value)}
                                 type="password"
-                                className="pl-9 bg-background border-border rounded-xl h-10 focus:ring-primary text-sm"
+                                className="pl-8 bg-background border-border rounded-lg h-9 focus:ring-primary text-[11px]"
                                 autoComplete="new-password"
                             />
                         </div>
@@ -141,10 +141,10 @@ export default function UpdatePasswordForm({
                     </div>
                 </div>
 
-                <div className="flex items-center gap-4 pt-2">
+                <div className="flex items-center gap-4 pt-1">
                     <Button 
                         type="submit" 
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-10 px-6 rounded-full shadow-lg shadow-primary/20 text-xs"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-9 px-5 rounded-full shadow-lg shadow-primary/20 text-[10px]"
                         disabled={processing}
                     >
                         {processing && <Loader2 className="mr-2 h-3 w-3 animate-spin" />}

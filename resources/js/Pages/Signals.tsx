@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 import { Card, CardContent } from '@/Components/ui/card';
-import { BrainCircuit, Lock, TrendingUp, TrendingDown, Target, AlertTriangle } from 'lucide-react';
+import { Signal, Lock, TrendingUp, TrendingDown, Target, AlertTriangle } from 'lucide-react';
 import { Button } from '@/Components/ui/button';
 
 export default function Signals({ auth, signals, history, free_limit, pro_limit }: any) {
@@ -18,7 +18,7 @@ export default function Signals({ auth, signals, history, free_limit, pro_limit 
             header={
                 <div>
                     <h2 className="text-base md:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-                        <BrainCircuit className="text-primary w-5 h-5 md:w-6 md:h-6" />
+                        <Signal className="text-primary w-5 h-5 md:w-6 md:h-6" />
                         AI Trading Signals
                     </h2>
                     <p className="text-[10px] md:text-sm text-muted-foreground mt-1">
@@ -97,7 +97,7 @@ export default function Signals({ auth, signals, history, free_limit, pro_limit 
 
                     {signals.length === 0 && (
                         <div className="col-span-full py-12 text-center border-2 border-dashed border-border rounded-3xl">
-                            <BrainCircuit className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                            <Signal className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
                             <h3 className="text-lg font-bold text-foreground">No Signals Yet</h3>
                             <p className="text-sm text-muted-foreground">The AI is currently analyzing the markets. Check back later.</p>
                         </div>

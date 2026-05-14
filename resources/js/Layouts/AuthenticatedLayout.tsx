@@ -18,7 +18,7 @@ import {
     Check,
     Plus,
     Loader2,
-    BrainCircuit,
+    Signal,
     ShieldCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -113,7 +113,7 @@ export default function Authenticated({
     const navigation = [
         { name: t.dashboard, href: route('dashboard'), icon: LayoutDashboard, active: route().current('dashboard') },
         { name: t.journal, href: route('journal'), icon: BookOpen, active: route().current('journal') },
-        { name: 'Signals', href: route('signals.index'), icon: BrainCircuit, active: route().current('signals.index') },
+        { name: 'Signals', href: route('signals.index'), icon: Signal, active: route().current('signals.index') },
         { name: t.settings, href: route('profile.edit'), icon: Settings, active: route().current('profile.edit') },
     ];
 

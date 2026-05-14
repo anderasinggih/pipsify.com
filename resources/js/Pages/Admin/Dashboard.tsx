@@ -89,6 +89,14 @@ export default function AdminDashboard({ settings, signals }: any) {
                                         className="h-10 bg-background border-border rounded-xl focus:ring-primary text-sm"
                                     />
                                 </div>
+                                <div className="space-y-2">
+                                    <Label className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Pro Tier Daily Limit</Label>
+                                    <Input 
+                                        type="number"
+                                        value={data.pro_limit}
+                                        onChange={e => setData('pro_limit', parseInt(e.target.value))}
+                                        className="h-10 bg-background border-border rounded-xl focus:ring-primary text-sm"
+                                    />
                                 </div>
                                 <div className="space-y-2">
                                     <Label className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Reasoning Language</Label>

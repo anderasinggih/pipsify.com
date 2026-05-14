@@ -237,7 +237,7 @@ export default function Authenticated({
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56 bg-card border-border text-foreground shadow-2xl rounded-2xl p-2">
-                        {user.is_admin && (
+                        {Boolean(user.is_admin) && (
                             <DropdownMenuItem asChild className="rounded-xl cursor-pointer focus:bg-emerald-500/10 focus:text-emerald-500 text-emerald-500 mb-1 font-bold">
                                 <Link href={route('admin.dashboard')} className="w-full text-left flex items-center gap-2">
                                     <ShieldCheck className="h-4 w-4" />

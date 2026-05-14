@@ -6,6 +6,8 @@ use App\Http\Controllers\TradeController;
 use App\Http\Controllers\StrategyController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TradeAccountController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SignalController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +30,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/strategies', [StrategyController::class, 'store'])->name('strategies.store');
     
     Route::post('/subscription/upgrade', [SubscriptionController::class, 'upgrade'])->name('subscription.upgrade');
+
+    // Signals
+    Route::get('/signals', [SignalController::class, 'index'])->name('signals.index');
+
+    // Admin Routes
+    Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::post('/settings', [AdminController::class, 'updateSettings'])->name('settings.update');
+        Route::post('/signals/generate', [AdminController::class, 'generateSignal'])->name('signals.generate');
+        Route::patch('/signals/{signal}', [AdminController::class, 'updateSignal'])->name('signals.update');
+    });
 
     // Trade Accounts
     Route::post('/trade-accounts/switch', [TradeAccountController::class, 'switch'])->name('trade-accounts.switch');

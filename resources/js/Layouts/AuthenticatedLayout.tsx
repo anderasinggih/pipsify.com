@@ -17,7 +17,9 @@ import {
     ChevronsUpDown,
     Check,
     Plus,
-    Loader2
+    Loader2,
+    BrainCircuit,
+    ShieldCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/Components/ui/button';
@@ -111,6 +113,7 @@ export default function Authenticated({
     const navigation = [
         { name: t.dashboard, href: route('dashboard'), icon: LayoutDashboard, active: route().current('dashboard') },
         { name: t.journal, href: route('journal'), icon: BookOpen, active: route().current('journal') },
+        { name: 'Signals', href: route('signals.index'), icon: BrainCircuit, active: route().current('signals.index') },
         { name: t.settings, href: route('profile.edit'), icon: Settings, active: route().current('profile.edit') },
     ];
 
@@ -234,6 +237,14 @@ export default function Authenticated({
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56 bg-card border-border text-foreground shadow-2xl rounded-2xl p-2">
+                        {user.is_admin && (
+                            <DropdownMenuItem asChild className="rounded-xl cursor-pointer focus:bg-emerald-500/10 focus:text-emerald-500 text-emerald-500 mb-1 font-bold">
+                                <Link href={route('admin.dashboard')} className="w-full text-left flex items-center gap-2">
+                                    <ShieldCheck className="h-4 w-4" />
+                                    Admin Dashboard
+                                </Link>
+                            </DropdownMenuItem>
+                        )}
                         <DropdownMenuItem asChild className="rounded-xl cursor-pointer focus:bg-secondary">
                             <Link href={route('profile.edit')} className="w-full text-left">{t.profile}</Link>
                         </DropdownMenuItem>
